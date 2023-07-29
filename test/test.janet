@@ -2,9 +2,7 @@
 (import path)
 
 (love/init)
-(def exepath_ (love/filesystem/get-executable-path))
-(print exepath_)
-(def exepath (path/dirname exepath_))
+(def exepath (path/dirname (love/filesystem/get-executable-path)))
 (love/filesystem/init exepath)
 (love/filesystem/set-source exepath)
 (love/window/set-title "Love2D-Janet")
@@ -37,7 +35,7 @@
 
 (var finished false)
 
-(while true
+(while (not finished)
   (love/event/pump)
   (var event (love/event/poll))
   (while event
@@ -49,7 +47,8 @@
   (love/timer/step)
 
   (if (love/graphics/is-active)
-    (love/graphics/origin)
-    (love/graphics/present))
+    (do
+      (love/graphics/origin)
+      (love/graphics/present)))
 
   (love/timer/sleep 0.001))

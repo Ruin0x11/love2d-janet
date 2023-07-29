@@ -11,7 +11,7 @@ static Janet cfun_love_timer_step(int32_t argc, Janet *argv) {
 
 static Janet cfun_love_timer_sleep(int32_t argc, Janet *argv) {
     janet_fixarity(argc, 1);
-    double secs = janet_getnumber(argv, 1);
+    double secs = janet_getnumber(argv, 0);
     love_timer_sleep(secs);
     return janet_wrap_nil();
 }

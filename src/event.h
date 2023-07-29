@@ -44,8 +44,8 @@ static Janet cfun_love_event_poll(int32_t argc, Janet *argv) {
         const char* mesName = love_Event_Message_getName(outMes);
         JanetArray* arr = janet_array(size + 1);
         janet_array_push(arr, janet_cstringv(mesName));
-        for (LoveC_VariantRef* a = args; a != NULL; a++) {
-            Janet data = janetx_wrap_variant(*a);
+        for (int i = 0; i < size; i++) {
+            Janet data = janetx_wrap_variant(args[i]);
             janet_array_push(arr, data);
         }
         return janet_wrap_array(arr);
